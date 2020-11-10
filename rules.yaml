@@ -1,0 +1,51 @@
+attribute_rules:
+    - msg: "WT101 {}(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops"
+      patterns: ['permute','view','reshape','transpose','flatten','ravel','unravel','squeeze','unsqueeze','chunk','stack', 'concatenate','cat','dstack','hstack','vstack']
+
+    - msg: "WT103 {}(): Use reduce(X, '...->...') from https://github.com/arogozhnikov/einops"
+      patterns: ['maximum','minimum','median','average','max_pool3d', 'max_pool2d', 'max_pool1d','avg_pool3d', 'avg_pool2d', 'avg_pool1d']
+
+    - msg: "WT106 {}(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum"
+      patterns: ['einsum','matmul','mm', 'bmm','dot']
+
+    - msg: "WT301 .clone(): use .copy() for numpy-compatible names (Pytorch 1.7+)"
+      patterns: ['clone']
+
+name_only_rules:
+    - msg: "WT100 {}(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops"
+      patterns: ['PixelShuffle','Concatenate','Flatten','Reshape', 'Stack']
+
+    - msg: "WT102 {}(): Use Reduce('...->...') from https://github.com/arogozhnikov/einops"
+      patterns: ['MaxPool3d', 'MaxPool2d', 'MaxPool1d','AvgPool3d', 'AvgPool2d', 'AvgPool1d', 'MaxPool3D', 'MaxPool2D', 'MaxPool1D','AveragePooling1D', 'AveragePooling2D', 'AveragePooling3D','Maximum','Minimum','Average']
+
+    - msg: "WT104 {}(): Use Repeat('...->...') from https://github.com/arogozhnikov/einops"
+      patterns: [ ]
+
+    - msg: "WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY."
+      patterns: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']
+
+    - msg: "WT201 Beware: InstanceNorm*d has affine=False as default, unlike in BatchNorm and GroupNorm! See: https://github.com/pytorch/pytorch/issues/22755"
+      patterns: ['InstanceNorm1d','InstanceNorm2d','InstanceNorm3d']
+
+    - msg: "WT400 {} layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly"
+      patterns: ['Linear','Dense']
+
+    - msg: "WT401 Try AdaBelief optimizer instead of {}. See: https://juntang-zhuang.github.io/adabelief/"
+      patterns: ['Adam','SGD']
+
+    - msg: "WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002"
+      patterns: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss']
+
+
+fully_qualified_name_rules:
+    - msg: "WT105 {}(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops"
+      patterns: ['torch.repeat', 'numpy.repeat','numpy.tile', 'np.tile']
+
+    - msg: "WT108 {}: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck"
+      patterns: ["np.nansum", "np.nanmean", "np.nanstd", "np.nanvar", "np.nanmin", "np.nanmax", "np.median", "np.nanmedian", "np.ss", "np.nanargmin", "np.nanargmax", "np.anynan", "np.allnan", "np.rankdata", "np.nanrankdata", "np.partition", "np.argpartition", "np.replace", "np.push", "np.move_sum", "np.move_mean", "np.move_std", "np.move_var", "np.move_min", "np.move_max", "np.move_argmin", "np.move_argmax", "np.move_median", "np.move_rank", "numpy.nansum", "numpy.nanmean", "numpy.nanstd", "numpy.nanvar", "numpy.nanmin", "numpy.nanmax", "numpy.median", "numpy.nanmedian", "numpy.ss", "numpy.nanargmin", "numpy.nanargmax", "numpy.anynan", "numpy.allnan", "numpy.rankdata", "numpy.nanrankdata", "numpy.partition", "numpy.argpartition", "numpy.replace", "numpy.push", "numpy.move_sum", "numpy.move_mean", "numpy.move_std", "numpy.move_var", "numpy.move_min", "numpy.move_max", "numpy.move_argmin", "numpy.move_argmax", "numpy.move_median", "numpy.move_rank" ]
+
+    - msg: "WT300 torch.nn.Module: use nn.Module. Shorter code is more readable."
+      patterns: ['torch.nn.Module']
+
+MatMult:
+    - msg: "WT107 matrix multiplication (@): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum"
