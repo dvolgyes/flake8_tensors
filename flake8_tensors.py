@@ -1,11 +1,11 @@
 import ast
-import sys
 from typing import Any
 from typing import Dict
 from typing import Generator
 from typing import List
 from typing import Tuple
 from typing import Type
+from typing import Set
 import bidict
 import yaml
 
@@ -14,15 +14,15 @@ def attr2str(node):
     if isinstance(node, ast.Name):
         return node.id
     elif isinstance(node, ast.Attribute):
-        return attr2str(node.value)+'.'+attr2str(node.attr)
+        return attr2str(node.value) + '.' + attr2str(node.attr)
     elif isinstance(node, str):
         return node
     elif isinstance(node, ast.Constant):
         return repr(node.value)
     elif isinstance(node, ast.Call):
-        x= f"{attr2str(node.func)}({', '.join([attr2str(x) for x in node.args])},{', '.join(attr2str(x) for x in node.keywords)})"
+        x = f"{attr2str(node.func)}({', '.join([attr2str(x) for x in node.args])},{', '.join(attr2str(x) for x in node.keywords)})"
         return x
-    return ""  # raise NotImplementedError
+    return ""  # empty for not implemented
 
 
 class Visitor(ast.NodeVisitor):
@@ -32,13 +32,12 @@ class Visitor(ast.NodeVisitor):
         self.KB = yaml.safe_load(RULES)
         self._import = bidict.bidict()
 
-
     def visit_Import(self, node: ast.Import) -> None:
         for alias in node.names:
             fullname = alias.name
             while (basename := fullname.split('.')[0]) in self._import.inv:
                 new_basename = self._import.inv[basename]
-                fullname = '.'.join([new_basename, ]+fullname.split('.')[1:])
+                fullname = '.'.join([new_basename, ] + fullname.split('.')[1:])
                 if basename == new_basename:
                     break
             try:
@@ -46,9 +45,8 @@ class Visitor(ast.NodeVisitor):
                     self._import[fullname] = alias.asname
                 else:
                     self._import[fullname] = alias.name
-            except bidict.ValueDuplicationError as e:
-                print(e)
-
+            except bidict.ValueDuplicationError:
+                pass  #  There might be some false positives, but unlikely
         self.generic_visit(node)
 
     def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
@@ -65,29 +63,31 @@ class Visitor(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_MatMult(self, node) -> None:
-
-        self.errors.add((node._pyflakes_parent.lineno,
-                         node._pyflakes_parent.col_offset, self.KB['MatMult'][0]['msg']))
+        self.errors.add(
+            (node._pyflakes_parent.lineno,
+             node._pyflakes_parent.col_offset,
+             self.KB['MatMult'][0]['msg']))
         self.generic_visit(node)
 
     def visit_Attribute(self, node: ast.Attribute) -> None:
         fqn = attr2str(node)
-        for data, rule_name in zip( (node.attr, fqn), ('attribute_rules','fully_qualified_name_rules')):
+        for data, rule_name in zip(
+                (node.attr, fqn), ('attribute_rules', 'fully_qualified_name_rules')):
             for rule in self.KB[rule_name]:
                 msg = rule['msg']
                 if data in rule['patterns']:
-                    if msg.find('{')> -1:
+                    if msg.find('{') > -1:
                         msg = msg.replace('{}', data)
                     self.errors.add((node.lineno, node.col_offset, msg))
         self.generic_visit(node)
 
     def visit_Name(self, node: ast.Name) -> None:
         data = node.id
-        rule_name  = 'name_only_rules'
+        rule_name = 'name_only_rules'
         for rule in self.KB[rule_name]:
             msg = rule['msg']
             if data in rule['patterns']:
-                if msg.find('{')> -1:
+                if msg.find('{') > -1:
                     msg = msg.replace('{}', data)
                 self.errors.add((node.lineno, node.col_offset, msg))
         self.generic_visit(node)
@@ -95,7 +95,7 @@ class Visitor(ast.NodeVisitor):
 
 class Flake8TensorsPlugin:
     name = __name__
-    version = '0.1'
+    version = '0.1.1'
 
     def __init__(self, tree: ast.AST):
         self._tree = tree
@@ -106,6 +106,7 @@ class Flake8TensorsPlugin:
 
         for line, col, msg in visitor.errors:
             yield line, col, msg, type(self)
+
 
 RULES = """
 attribute_rules:
