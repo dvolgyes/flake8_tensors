@@ -2,6 +2,9 @@
 
 import setuptools
 import flake8_tensors as f8tensors
+from pathlib import Path
+
+requirements = (Path(__file__).parent/'requirements.txt').read_text().split('\n')
 
 setuptools.setup(
     name=f8tensors.__title__,
@@ -19,8 +22,8 @@ setuptools.setup(
         'flake8.extension': ['WT = flake8_tensors:Flake8TensorsPlugin',],
         },
     python_requires='>=3.6',
-    setup_requires=['flake8', 'importlib', 'bidict', 'pyyaml','importlib-metadata', 'astpath'],
-    install_requires=['flake8', 'importlib', 'bidict', 'pyyaml','importlib-metadata', 'astpath'],
+    setup_requires=requirements,
+    install_requires=requirements,
     keywords='flake8 pytorch',
     classifiers=[
         'Development Status :: 4 - Beta',
