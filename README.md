@@ -1,4 +1,4 @@
-flake8-tensors
+flake8_tensors
 ==============
 
 flake8 plugin which recommends some tricks for machine learning codes.
@@ -9,9 +9,12 @@ The plugin requires python3.8, because the walrus operator was convenient,
 and I wrote the plugin for myself. If you don't use python3.8, then it is
 time to upgrade. :) Then proceed with:
 
-`pip install git+git://github.com/dvolgyes/flake8-tensors`
+for stable version:
+`pip install flake8_tensors`
 
-(I will create pypi package too, but it takes time.)
+for the development:
+`pip install git+git://github.com/dvolgyes/flake8_tensors --upgrade`
+
 
 ## Usage
 

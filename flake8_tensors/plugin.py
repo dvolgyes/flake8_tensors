@@ -1,3 +1,4 @@
+from flake8_tensors import __version__, __title__
 import ast
 from typing import Any
 from typing import Dict
@@ -8,7 +9,6 @@ from typing import Type
 from typing import Set
 import bidict
 import yaml
-
 
 def attr2str(node):
     if isinstance(node, ast.Name):
@@ -94,13 +94,14 @@ class Visitor(ast.NodeVisitor):
 
 
 class Flake8TensorsPlugin:
-    name = __name__
-    version = '0.1.1'
+    name = __title__
+    version = __version__
 
     def __init__(self, tree: ast.AST):
         self._tree = tree
 
     def run(self) -> Generator[Tuple[int, int, str, Type[Any]], None, None]:
+
         visitor = Visitor()
         visitor.visit(self._tree)
 
@@ -121,6 +122,9 @@ attribute_rules:
 
     - msg: "WT301 .clone(): use .copy() for numpy-compatible names (Pytorch 1.7+)"
       patterns: ['clone']
+
+    - msg: "WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002"
+      patterns: ['categorical_crossentropy']
 
 name_only_rules:
     - msg: "WT100 {}(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops"
@@ -145,10 +149,13 @@ name_only_rules:
       patterns: ['Adam','SGD']
 
     - msg: "WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002"
-      patterns: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss']
+      patterns: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss', 'categorical_crossentropy']
 
 
 fully_qualified_name_rules:
+    - msg: "WT400 {} layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly"
+      patterns: ['nn.Linear','torch.nn.Linear']
+
     - msg: "WT105 {}(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops"
       patterns: ['torch.repeat', 'numpy.repeat','numpy.tile', 'np.tile']
 
@@ -157,6 +164,8 @@ fully_qualified_name_rules:
 
     - msg: "WT300 torch.nn.Module: use nn.Module. Shorter code is more readable."
       patterns: ['torch.nn.Module']
+
+
 
 MatMult:
     - msg: "WT107 matrix multiplication (@): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum"
