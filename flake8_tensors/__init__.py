@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-__version__ = '0.2.4'
+__version__ = '0.2.5'
 __title__ = 'flake8_tensors'
 __summary__ = 'flake8_tensors - flake8 plugin for deep learning codes'
 __uri__ = 'https://github.com/dvolgyes/flake8_tensors'

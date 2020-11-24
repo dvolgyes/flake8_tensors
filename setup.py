@@ -22,7 +22,7 @@ setuptools.setup(
     entry_points={
         'flake8.extension': ['WT = flake8_tensors:Flake8TensorsPlugin', ],
     },
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     setup_requires=requirements,
     install_requires=requirements,
     keywords='flake8 pytorch',
