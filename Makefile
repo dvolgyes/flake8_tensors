@@ -15,3 +15,7 @@ test-deploy:
 deploy:
 	rm -fR build dist
 	python3 setup.py sdist bdist_wheel --universal && twine upload -r pypi dist/*
+
+update-test:
+	rm -f test/reference.report
+	flake8 test/test.py --select WT --output-file test/reference.report --exit-zero
