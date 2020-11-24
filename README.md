@@ -1,6 +1,9 @@
 flake8_tensors
 ==============
 
+Travis build: [![Build Status](https://travis-ci.org/dvolgyes/flake8_tensors.svg?branch=main)](https://travis-ci.org/dvolgyes/flake8_tensors)
+Coverage: [![Coverage Status](https://img.shields.io/coveralls/github/dvolgyes/flake8_tensors/main)](https://img.shields.io/coveralls/github/dvolgyes/flake8_tensors/main)
+
 flake8 plugin which recommends some tricks for machine learning codes.
 
 ## Installation
