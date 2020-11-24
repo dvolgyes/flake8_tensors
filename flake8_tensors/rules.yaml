@@ -38,10 +38,9 @@ astpath_rules:
       patterns: ["//Name[@id='{}' and ancestor::Call]", "//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']
 
-    - msg: "WT201 Beware: InstanceNorm*d has affine=False as default, unlike in BatchNorm and GroupNorm! See: https://github.com/pytorch/pytorch/issues/22755"
-      patterns: ["//Name[@id='{}' and ancestor::Call]", "//Attribute[@attr='{}' and ancestor::Call]"]
+    - msg: "WT201 Beware: {} has affine=False as default, unlike in BatchNorm and GroupNorm! Set 'affine' explicitly. See: https://github.com/pytorch/pytorch/issues/22755"
+      patterns: ["//Name[@id='{}' and ancestor::Call and not(../../keywords//@arg='affine')]", "//Attribute[@attr='{}' and ancestor::Call and not(../../keywords//@arg='affine')]"]
       template: ['InstanceNorm1d','InstanceNorm2d','InstanceNorm3d']
-
 
     - msg: "WT300 torch.nn.X: use nn.X. Shorter code is more readable."
       patterns: ["//Name[@id='torch' and ../../../Attribute/@attr='nn' and not(ancestor::Import or ancestor::ImportFrom)]",]
