@@ -1,0 +1,14 @@
+image: Visual Studio 2019
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python38"
+    - PYTHON: "C:\\Python39"
+    - PYTHON: "C:\\Python38-x64"
+    - PYTHON: "C:\\Python38-x64"
+
+install:
+    - pip install tox
+
+test_script:
+    - tox
