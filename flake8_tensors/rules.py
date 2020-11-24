@@ -1,3 +1,4 @@
+rules_yaml = """
 astpath_rules:
     - msg: "WT100 {}(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops"
       patterns: ["//Name[@id='{}' and ancestor::Call]", "//Attribute[@attr='{}' and ancestor::Call]"]
@@ -95,3 +96,4 @@ astpath_rules:
     - msg: "WT804 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a function?"
       patterns: ["//FunctionDef//ClassDef", ]
       template: []
+"""

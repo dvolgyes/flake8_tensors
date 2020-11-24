@@ -19,8 +19,6 @@ setuptools.setup(
     url=f8tensors.__uri__,
     license=f8tensors.__license__,
     packages=['flake8_tensors', ],
-    package_data={'flake8_tensors': ['flake8_tensors/rules.yaml']},
-    include_package_data=True,
     entry_points={
         'flake8.extension': ['WT = flake8_tensors:Flake8TensorsPlugin', ],
     },

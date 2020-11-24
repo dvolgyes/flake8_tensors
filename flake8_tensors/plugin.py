@@ -6,8 +6,7 @@ from typing import Tuple
 from typing import Type
 import yaml
 import astpath
-from pathlib import Path
-
+from .rules import rules_yaml
 
 class Flake8TensorsPlugin:
     name = __title__
@@ -15,8 +14,7 @@ class Flake8TensorsPlugin:
 
     def __init__(self, tree: ast.AST):
         self._tree = tree
-        path = (Path(__file__).parent/'rules.yaml')
-        self.rules = yaml.safe_load(path.read_text())
+        self.rules = yaml.safe_load(rules_yaml)
 
     def run(self) -> Generator[Tuple[int, int, str, Type[Any]], None, None]:
 
