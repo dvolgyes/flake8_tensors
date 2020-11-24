@@ -4,7 +4,8 @@ import setuptools
 import flake8_tensors as f8tensors
 from pathlib import Path
 
-requirements = (Path(__file__).parent/'requirements.txt').read_text().split('\n')
+requirements = (Path(__file__).parent /
+                'requirements.txt').read_text().split('\n')
 
 setuptools.setup(
     name=f8tensors.__title__,
@@ -17,10 +18,12 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url=f8tensors.__uri__,
     license=f8tensors.__license__,
-    packages=["flake8_tensors",],
+    packages=['flake8_tensors', ],
+    package_data={'flake8_tensors': ['flake8_tensors/rules.yaml']},
+    include_package_data=True,
     entry_points={
-        'flake8.extension': ['WT = flake8_tensors:Flake8TensorsPlugin',],
-        },
+        'flake8.extension': ['WT = flake8_tensors:Flake8TensorsPlugin', ],
+    },
     python_requires='>=3.6',
     setup_requires=requirements,
     install_requires=requirements,
@@ -30,8 +33,6 @@ setuptools.setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
