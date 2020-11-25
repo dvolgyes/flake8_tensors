@@ -12,7 +12,7 @@ install:
 
 script:
   - tox
-  - coverage run -m flake8 test/test.py --select WT
+  - coverage run -m flake8 test/test.py --source flake8_tensors -L --select WT
 
 after_success:
   - coveralls
