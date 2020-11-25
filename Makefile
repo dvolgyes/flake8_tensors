@@ -18,4 +18,4 @@ deploy:
 
 update-test:
 	rm -f test/reference.report
-	flake8 test/test.py --select WT --output-file test/reference.report --exit-zero
+	flake8 test.py --select WT --output-file test/reference.report --exit-zero
