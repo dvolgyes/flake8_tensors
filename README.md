@@ -18,7 +18,7 @@ and I wrote the plugin for myself. If you don't use python3.8, then it is
 time to upgrade. :) Then proceed with:
 
 for stable version:
-`pip install flake8_tensors`
+`pip install flake8_tensors --upgrade`
 
 for the development:
 `pip install git+git://github.com/dvolgyes/flake8_tensors --upgrade`

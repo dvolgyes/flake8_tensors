@@ -1,11 +1,14 @@
 language: python
+dist: bionic
 
 python:
   - "3.8"
   - "3.9"
 
 install:
-  - pip install -U tox-travis coveralls
+  - pip install -U tox-travis coverage coveralls
+  - pip install -U -r requirements.txt
+
 
 script:
   - tox
