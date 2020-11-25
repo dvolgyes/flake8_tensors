@@ -2,7 +2,12 @@ flake8_tensors
 ==============
 
 Travis build: [![Build Status](https://travis-ci.org/dvolgyes/flake8_tensors.svg?branch=main)](https://travis-ci.org/dvolgyes/flake8_tensors)
+AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/f4mhrp8oi4r8fvrd?svg=true)](https://ci.appveyor.com/project/dvolgyes/flake8-tensors)
 Coverage: [![Coverage Status](https://img.shields.io/coveralls/github/dvolgyes/flake8_tensors/main)](https://img.shields.io/coveralls/github/dvolgyes/flake8_tensors/main)
+
+[![pyversion](https://img.shields.io/pypi/pyversions/flake8_tensors.svg)](https://pypi.org/project/flake8_tensors/)
+[![PyPI - License](https://img.shields.io/pypi/l/flake8_tensors.svg)](https://github.com/dvolgyes/flake8_tensors/raw/master/LICENSE.txt)
+
 
 flake8 plugin which recommends some tricks for machine learning codes.
 
