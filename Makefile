@@ -15,6 +15,8 @@ test-deploy:
 deploy:
 	rm -fR build dist
 	python3 setup.py sdist bdist_wheel --universal && twine upload -r pypi dist/*
+	`python -c 'import flake8_tensors; print(f"git tag -a v{flake8_tensors.__version__} -m release_{flake8_tensors.__version__}")'`
+	git push --all
 
 update-test:
 	rm -f test/reference.report
