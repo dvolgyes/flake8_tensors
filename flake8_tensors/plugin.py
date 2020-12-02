@@ -8,6 +8,7 @@ import yaml
 import astpath
 from .rules import rules_yaml
 
+
 class Flake8TensorsPlugin:
     name = __title__
     version = __version__

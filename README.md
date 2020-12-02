@@ -13,14 +13,12 @@ flake8 plugin which recommends some tricks for machine learning codes.
 
 ## Installation
 
-The plugin requires python3.8, because the walrus operator was convenient,
-and I wrote the plugin for myself. If you don't use python3.8, then it is
-time to upgrade. :) Then proceed with:
+The plugin requires python3.6+.
 
-for stable version:
+Install the stable version:
 `pip install flake8_tensors --upgrade`
 
-for the development:
+Or the development:
 `pip install git+git://github.com/dvolgyes/flake8_tensors --upgrade`
 
 
