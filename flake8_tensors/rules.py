@@ -47,6 +47,10 @@ astpath_rules:
       patterns: [".//Call[((func/Attribute/value/Name/@id='np' or func/Attribute/value/Name/@id='numpy') and func/Attribute/@attr='all') and args/Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='isnan']]", ]
       template: []
 
+    - msg: "WT111 np.{}: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck"
+      patterns: [".//Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='{}' and not(ancestor::Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and (@attr='any' or @attr='all')]) ]", ]
+      template: ["isnan"]
+
     - msg: "WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY."
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']

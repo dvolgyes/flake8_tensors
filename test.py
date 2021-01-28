@@ -58,5 +58,5 @@ np.any(np.isnan(x))
 np.any(np.any(x))
 np.isnan(np.any(x))
 np.all(numpy.isnan(x))
-numpy.all(np.isnan(x))
-
+np.sum(x[np.isnan(x)])
+mask=np.isnan(x)
