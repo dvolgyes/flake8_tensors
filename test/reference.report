@@ -32,3 +32,6 @@ test.py:54:1: WT401 Try AdaBelief optimizer instead of SGD. See: https://juntang
 test.py:55:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
 test.py:55:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
 test.py:56:1: WT108 np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
+test.py:57:1: WT109 np.any(np.isnan(x)): use bn.anynan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
+test.py:60:1: WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
+test.py:61:1: WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
