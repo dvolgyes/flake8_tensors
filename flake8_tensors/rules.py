@@ -35,6 +35,18 @@ astpath_rules:
       patterns: [".//MatMult",]
 
 
+    - msg: "WT108 np.{}: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck"
+      patterns: [".//Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='{}']", ]
+      template: ["nansum", "nanmean", "nanstd", "nanvar", "nanmin", "nanmax", "median", "nanmedian", "ss", "nanargmin", "nanargmax", "anynan", "allnan", "rankdata", "nanrankdata", "partition", "argpartition", "replace", "push", "move_sum", "move_mean", "move_std", "move_var", "move_min", "move_max", "move_argmin", "move_argmax", "move_median", "move_rank"]
+
+    - msg: "WT109 np.any(np.isnan(x)): use bn.anynan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck"
+      patterns: [".//Call[((func/Attribute/value/Name/@id='np' or func/Attribute/value/Name/@id='numpy') and func/Attribute/@attr='any') and args/Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='isnan']]", ]
+      template: []
+
+    - msg: "WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck"
+      patterns: [".//Call[((func/Attribute/value/Name/@id='np' or func/Attribute/value/Name/@id='numpy') and func/Attribute/@attr='all') and args/Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='isnan']]", ]
+      template: []
+
     - msg: "WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY."
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']
@@ -68,14 +80,7 @@ astpath_rules:
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss', 'categorical_crossentropy']
 
-    - msg: "WT108 np.{}: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck"
-      patterns: [".//Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='{}']", ]
-      template: ["nansum", "nanmean", "nanstd", "nanvar", "nanmin", "nanmax", "median", "nanmedian", "ss", "nanargmin", "nanargmax", "anynan", "allnan", "rankdata", "nanrankdata", "partition", "argpartition", "replace", "push", "move_sum", "move_mean", "move_std", "move_var", "move_min", "move_max", "move_argmin", "move_argmax", "move_median", "move_rank", "numpy.nansum", "numpy.nanmean", "numpy.nanstd", "numpy.nanvar", "numpy.nanmin", "numpy.nanmax", "numpy.median", "numpy.nanmedian", "numpy.ss", "numpy.nanargmin", "numpy.nanargmax", "numpy.anynan", "numpy.allnan", "numpy.rankdata", "numpy.nanrankdata", "numpy.partition", "numpy.argpartition", "numpy.replace", "numpy.push", "numpy.move_sum", "numpy.move_mean", "numpy.move_std", "numpy.move_var", "numpy.move_min", "numpy.move_max", "numpy.move_argmin", "numpy.move_argmax", "numpy.move_median", "numpy.move_rank" ]
 
-
-    - msg: "WT108 np.{}: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck"
-      patterns: [".//Cons/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='{}']", ]
-      template: ["nansum", "nanmean", "nanstd", "nanvar", "nanmin", "nanmax", "median", "nanmedian", "ss", "nanargmin", "nanargmax", "anynan", "allnan", "rankdata", "nanrankdata", "partition", "argpartition", "replace", "push", "move_sum", "move_mean", "move_std", "move_var", "move_min", "move_max", "move_argmin", "move_argmax", "move_median", "move_rank", "numpy.nansum", "numpy.nanmean", "numpy.nanstd", "numpy.nanvar", "numpy.nanmin", "numpy.nanmax", "numpy.median", "numpy.nanmedian", "numpy.ss", "numpy.nanargmin", "numpy.nanargmax", "numpy.anynan", "numpy.allnan", "numpy.rankdata", "numpy.nanrankdata", "numpy.partition", "numpy.argpartition", "numpy.replace", "numpy.push", "numpy.move_sum", "numpy.move_mean", "numpy.move_std", "numpy.move_var", "numpy.move_min", "numpy.move_max", "numpy.move_argmin", "numpy.move_argmax", "numpy.move_median", "numpy.move_rank" ]
 
     - msg: "WT800 Document your functions! 'Documentation is a love letter that you write to your future self.' — Damian Conway"
       patterns: [".//FunctionDef/body/*[1]/value/*[(not(self::Constant) or not(string(number(self::Constant/@value))='NaN')) and (preceding::*) and not(ancestor::ClassDef)]", ]
