@@ -82,6 +82,16 @@ astpath_rules:
 
 
 
+    - msg: "WT803 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a class?"
+      patterns: [".//ClassDef//ClassDef", ]
+      template: []
+
+    - msg: "WT804 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a function?"
+      patterns: [".//FunctionDef//ClassDef", ]
+      template: []
+"""
+
+removed_rules = """
     - msg: "WT800 Document your functions! 'Documentation is a love letter that you write to your future self.' — Damian Conway"
       patterns: [".//FunctionDef/body/*[1]/value/*[(not(self::Constant) or not(string(number(self::Constant/@value))='NaN')) and (preceding::*) and not(ancestor::ClassDef)]", ]
       template: []
@@ -92,13 +102,5 @@ astpath_rules:
 
     - msg: "WT802 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a function inside a function?"
       patterns: [".//FunctionDef//FunctionDef", ]
-      template: []
-
-    - msg: "WT803 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a class?"
-      patterns: [".//ClassDef//ClassDef", ]
-      template: []
-
-    - msg: "WT804 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a function?"
-      patterns: [".//FunctionDef//ClassDef", ]
       template: []
 """
