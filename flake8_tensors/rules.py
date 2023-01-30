@@ -51,6 +51,12 @@ astpath_rules:
       patterns: [".//Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and @attr='{}' and not(ancestor::Call/func/Attribute[(value/Name/@id='np' or value/Name/@id='numpy') and (@attr='any' or @attr='all')]) ]", ]
       template: ["isnan"]
 
+    - msg: "WT112 .{}() calls also need to assign to a new variable, they do NOT change their underlying variable"
+      patterns: [".//Expr/value/Call/func/Attribute[@attr='{}']", ]
+      template: ['cpu', 'detach', 'permute','view','reshape','transpose','flatten','ravel','unravel','squeeze','unsqueeze','chunk','stack', 'concatenate','cat','dstack','hstack','vstack']
+
+
+
     - msg: "WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY."
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']
@@ -68,9 +74,6 @@ astpath_rules:
       template: ['clone']
 
 
-    - msg: "WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002"
-      patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
-      template: ['categorical_crossentropy']
 
     - msg: "WT400 {} layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly"
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
@@ -84,8 +87,9 @@ astpath_rules:
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss', 'categorical_crossentropy']
 
+"""
 
-
+disabled_rules = """
     - msg: "WT800 Document your functions! 'Documentation is a love letter that you write to your future self.' — Damian Conway"
       patterns: [".//FunctionDef/body/*[1]/value/*[(not(self::Constant) or not(string(number(self::Constant/@value))='NaN')) and (preceding::*) and not(ancestor::ClassDef)]", ]
       template: []
@@ -106,3 +110,4 @@ astpath_rules:
       patterns: [".//FunctionDef//ClassDef", ]
       template: []
 """
+
