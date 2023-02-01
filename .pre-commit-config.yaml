@@ -35,14 +35,11 @@ repos:
             flake8-class-newline,
             flake8-comprehensions,
             flake8-debugger,
-            flake8-eradicate,
             flake8-logging-format,
             flake8-polyfill,
             flake8-quotes,
             flake8-string-format,
-            flake8-type-annotations,
             flake8-markdown,
-            pep8-naming
              ]
         args: ['--max-line-length=160', '--ignore=E121,E123,E125,E501,F401,F403,W503', '--exclude=test.py']
 

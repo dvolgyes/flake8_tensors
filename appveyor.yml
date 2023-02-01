@@ -2,21 +2,18 @@ image: Visual Studio 2019
 
 environment:
   matrix:
-    - PYTHON: "C:\\Python36"
-    - PYTHON: "C:\\Python37"
-    - PYTHON: "C:\\Python36-x64"
-    - PYTHON: "C:\\Python37-x64"
     - PYTHON: "C:\\Python38"
     - PYTHON: "C:\\Python39"
     - PYTHON: "C:\\Python38-x64"
     - PYTHON: "C:\\Python39-x64"
+    - PYTHON: "C:\\Python310"
+    - PYTHON: "C:\\Python310-x64"
 
 build: off
 
 install:
     - "%PYTHON%\\python.exe -m pip install --upgrade pip"
-    - "%PYTHON%\\python.exe -m pip install tox"
-    - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+    - "%PYTHON%\\python.exe -m pip install tox poetry"
 
 test_script:
     - "%PYTHON%\\python.exe -m tox"

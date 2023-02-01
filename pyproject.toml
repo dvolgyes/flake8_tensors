@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "flake8-tensors"
+version = "0.3.1"
+description = "flake8_tensors - flake8 plugin for deep learning codes"
+authors = ["David Völgyes <david.volgyes@ieee.org>"]
+readme = "README.md"
+packages = [{include = "flake8_tensors"}]
+repository = 'https://github.com/dvolgyes/flake8_tensors'
+license = 'MIT'
+keywords = ["flake8", "deep learning", "pytorch", "numpy"]
+
+include = ["test.py"]
+
+
+[tool.poetry.plugins."flake8.extension"]
+WT = 'flake8_tensors:Flake8TensorsPlugin'
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+flake8 = "^6.0"
+"ruamel.yaml" = "^0.17.21"
+astpath = "^0.9.0"
+lxml = "^4.9.2"
+setuptools = "^67.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

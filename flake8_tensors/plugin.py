@@ -1,21 +1,22 @@
 from flake8_tensors import __version__, __title__
-import ast
 from typing import Any
 from typing import Generator
 from typing import Tuple
 from typing import Type
-import yaml
+import ast
+from ruamel.yaml import YAML
 import astpath
 from .rules import rules_yaml
 
 
 class Flake8TensorsPlugin:
+
     name = __title__
     version = __version__
 
     def __init__(self, tree: ast.AST):
         self._tree = tree
-        self.rules = yaml.safe_load(rules_yaml)
+        self.rules = YAML(typ='safe').load(rules_yaml)
 
     def run(self) -> Generator[Tuple[int, int, str, Type[Any]], None, None]:
 

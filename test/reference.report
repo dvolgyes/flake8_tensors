@@ -1,76 +1,37 @@
-test.py:8:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:13:1: WT100 PixelShuffle(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
-test.py:14:1: WT100 Concatenate(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
-test.py:15:1: WT201 Beware: InstanceNorm2d has affine=False as default, unlike in BatchNorm and GroupNorm! Set 'affine' explicitly. See: https://github.com/pytorch/pytorch/issues/22755
-test.py:15:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:16:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:17:1: WT102 MaxPool3d(): Use Reduce('...->...') from https://github.com/arogozhnikov/einops
-test.py:18:1: WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY.
-test.py:19:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:23:1: WT803 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a class?
-test.py:23:1: WT804 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a function?
-test.py:26:1: WT802 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a function inside a function?
-test.py:33:1: WT301 .clone(): use .copy() for numpy-compatible names (Pytorch 1.7+)
-test.py:35:1: WT108 np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
-test.py:36:1: WT107 matrix multiplication (@): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:39:1: WT101 X.reshape(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:40:1: WT101 X.view(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:41:1: WT101 X.permute(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:42:1: WT105 np.tile(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:43:1: WT105 np.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:44:1: WT105 torch.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:45:1: WT106 einsum(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:46:1: WT106 matmul(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:49:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:49:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:50:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:50:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:51:1: WT400 Linear layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
-test.py:52:1: WT400 Dense layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
-test.py:53:1: WT401 Try AdaBelief optimizer instead of Adam. See: https://juntang-zhuang.github.io/adabelief/
-test.py:54:1: WT401 Try AdaBelief optimizer instead of SGD. See: https://juntang-zhuang.github.io/adabelief/
-test.py:55:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:55:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:56:1: WT108 np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
-test.py:57:1: WT109 np.any(np.isnan(x)): use bn.anynan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
-test.py:60:1: WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
-test.py:61:1: WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
-test.py:8:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:13:1: WT100 PixelShuffle(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
-test.py:14:1: WT100 Concatenate(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
-test.py:15:1: WT201 Beware: InstanceNorm2d has affine=False as default, unlike in BatchNorm and GroupNorm! Set 'affine' explicitly. See: https://github.com/pytorch/pytorch/issues/22755
-test.py:15:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:16:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:17:1: WT102 MaxPool3d(): Use Reduce('...->...') from https://github.com/arogozhnikov/einops
-test.py:18:1: WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY.
-test.py:19:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:23:1: WT803 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a class?
-test.py:23:1: WT804 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a class inside a function?
-test.py:26:1: WT802 PEP20 (Zen of Python) violation. 'Flat is better than nested.' Do you really need a function inside a function?
-test.py:33:1: WT301 .clone(): use .copy() for numpy-compatible names (Pytorch 1.7+)
-test.py:35:1: WT108 np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
-test.py:36:1: WT107 matrix multiplication (@): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:39:1: WT101 X.reshape(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:40:1: WT101 X.view(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:41:1: WT101 X.permute(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:42:1: WT105 np.tile(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:43:1: WT105 np.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:44:1: WT105 torch.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
-test.py:45:1: WT106 einsum(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:46:1: WT106 matmul(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
-test.py:49:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:49:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:50:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:50:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:51:1: WT400 Linear layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
-test.py:52:1: WT400 Dense layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
-test.py:53:1: WT401 Try AdaBelief optimizer instead of Adam. See: https://juntang-zhuang.github.io/adabelief/
-test.py:54:1: WT401 Try AdaBelief optimizer instead of SGD. See: https://juntang-zhuang.github.io/adabelief/
-test.py:55:1: WT300 torch.nn.X: use nn.X. Shorter code is more readable.
-test.py:55:1: WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
-test.py:56:1: WT108 np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
-test.py:57:1: WT109 np.any(np.isnan(x)): use bn.anynan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
-test.py:59:1: WT111 np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
-test.py:60:1: WT110 np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
-test.py:61:1: WT111 np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
-test.py:62:1: WT111 np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m8[36m:[m1[36m:[m [1m[31mWT300[m torch.nn.X: use nn.X. Shorter code is more readable.
+[1mtest/test.py[m[36m:[m13[36m:[m1[36m:[m [1m[31mWT100[m PixelShuffle(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m14[36m:[m1[36m:[m [1m[31mWT100[m Concatenate(): Use Rearrange('...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m15[36m:[m1[36m:[m [1m[31mWT201[m Beware: InstanceNorm2d has affine=False as default, unlike in BatchNorm and GroupNorm! Set 'affine' explicitly. See: https://github.com/pytorch/pytorch/issues/22755
+[1mtest/test.py[m[36m:[m15[36m:[m1[36m:[m [1m[31mWT300[m torch.nn.X: use nn.X. Shorter code is more readable.
+[1mtest/test.py[m[36m:[m16[36m:[m1[36m:[m [1m[31mWT300[m torch.nn.X: use nn.X. Shorter code is more readable.
+[1mtest/test.py[m[36m:[m17[36m:[m1[36m:[m [1m[31mWT102[m MaxPool3d(): Use Reduce('...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m18[36m:[m1[36m:[m [1m[31mWT200[m Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY.
+[1mtest/test.py[m[36m:[m19[36m:[m1[36m:[m [1m[31mWT300[m torch.nn.X: use nn.X. Shorter code is more readable.
+[1mtest/test.py[m[36m:[m33[36m:[m1[36m:[m [1m[31mWT301[m .clone(): use .copy() for numpy-compatible names (Pytorch 1.7+)
+[1mtest/test.py[m[36m:[m35[36m:[m1[36m:[m [1m[31mWT108[m np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m36[36m:[m1[36m:[m [1m[31mWT107[m matrix multiplication (@): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
+[1mtest/test.py[m[36m:[m39[36m:[m1[36m:[m [1m[31mWT101[m X.reshape(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m40[36m:[m1[36m:[m [1m[31mWT101[m X.view(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m41[36m:[m1[36m:[m [1m[31mWT101[m X.permute(): Use rearrange(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m42[36m:[m1[36m:[m [1m[31mWT105[m np.tile(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m43[36m:[m1[36m:[m [1m[31mWT105[m np.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m44[36m:[m1[36m:[m [1m[31mWT105[m torch.repeat(): Use repeat(X, '...->...') from https://github.com/arogozhnikov/einops
+[1mtest/test.py[m[36m:[m45[36m:[m1[36m:[m [1m[31mWT106[m einsum(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
+[1mtest/test.py[m[36m:[m46[36m:[m1[36m:[m [1m[31mWT106[m matmul(): use opt_einsum.contract from https://github.com/dgasmith/opt_einsum
+[1mtest/test.py[m[36m:[m49[36m:[m1[36m:[m [1m[31mWT402[m Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
+[1mtest/test.py[m[36m:[m50[36m:[m1[36m:[m [1m[31mWT402[m Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
+[1mtest/test.py[m[36m:[m51[36m:[m1[36m:[m [1m[31mWT400[m Linear layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
+[1mtest/test.py[m[36m:[m52[36m:[m1[36m:[m [1m[31mWT400[m Dense layer: consider using butterfly layer. https://github.com/HazyResearch/butterfly
+[1mtest/test.py[m[36m:[m53[36m:[m1[36m:[m [1m[31mWT401[m Try AdaBelief optimizer instead of Adam. See: https://juntang-zhuang.github.io/adabelief/
+[1mtest/test.py[m[36m:[m54[36m:[m1[36m:[m [1m[31mWT401[m Try AdaBelief optimizer instead of SGD. See: https://juntang-zhuang.github.io/adabelief/
+[1mtest/test.py[m[36m:[m55[36m:[m1[36m:[m [1m[31mWT300[m torch.nn.X: use nn.X. Shorter code is more readable.
+[1mtest/test.py[m[36m:[m55[36m:[m1[36m:[m [1m[31mWT402[m Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002
+[1mtest/test.py[m[36m:[m56[36m:[m1[36m:[m [1m[31mWT108[m np.nansum: use bottleneck instead of numpy! Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m57[36m:[m1[36m:[m [1m[31mWT109[m np.any(np.isnan(x)): use bn.anynan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m59[36m:[m1[36m:[m [1m[31mWT111[m np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m60[36m:[m1[36m:[m [1m[31mWT110[m np.all(np.isnan(x)): use bn.allnan(x) from bottleneck, it is much faster! https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m61[36m:[m1[36m:[m [1m[31mWT111[m np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m62[36m:[m1[36m:[m [1m[31mWT111[m np.isnan: do you really need an isnan? Can't you use nansum/nanmean/nan* functions? Check out: https://github.com/pydata/bottleneck
+[1mtest/test.py[m[36m:[m63[36m:[m1[36m:[m [1m[31mWT112[m .detach() calls also need to assign to a new variable, they do NOT change their underlying variable
+[1mtest/test.py[m[36m:[m64[36m:[m1[36m:[m [1m[31mWT112[m .cpu() calls also need to assign to a new variable, they do NOT change their underlying variable
+[1mtest/test.py[m[36m:[m65[36m:[m1[36m:[m [1m[31mWT112[m .cpu() calls also need to assign to a new variable, they do NOT change their underlying variable

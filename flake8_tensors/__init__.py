@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-
-__version__ = '0.3.0'
+import pkg_resources
+__version__ = pkg_resources.require('flake8_tensors')[0].version
 __title__ = 'flake8_tensors'
 __summary__ = 'flake8_tensors - flake8 plugin for deep learning codes'
-__uri__ = 'https://github.com/dvolgyes/flake8_tensors'
 __license__ = 'MIT'
 __author__ = 'David Völgyes'
 __email__ = 'david.volgyes@ieee.org'
-
 __description__ = """
 This program is a flake8 plugin, and recommends some tricks
 and best practices for machine learning codes.
