@@ -17,7 +17,7 @@ WT = 'flake8_tensors:Flake8TensorsPlugin'
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-flake8 = "^6.0"
+flake8 = ">=6.0, <8.0"
 "ruamel.yaml" = "^0.17.21"
 astpath = "^0.9.0"
 lxml = "^4.9.2"
