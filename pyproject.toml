@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flake8-tensors"
-version = "1.0.0"
+version = "1.1.0"
 description = "flake8_tensors - flake8 plugin for deep learning codes"
 authors = ["David Völgyes <david.volgyes@ieee.org>"]
 readme = "README.md"
