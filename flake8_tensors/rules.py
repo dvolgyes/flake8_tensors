@@ -55,8 +55,6 @@ astpath_rules:
       patterns: [".//Expr/value/Call/func/Attribute[@attr='{}']", ]
       template: ['cpu', 'detach', 'permute','view','reshape','transpose','flatten','ravel','unravel','squeeze','unsqueeze','chunk','stack', 'concatenate','cat','dstack','hstack','vstack']
 
-
-
     - msg: "WT200 Beware with Pytorch's DropOut2d/DropOut3d! They ALWAYS drop 2nd dimension ONLY."
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['DropOut2d','DropOut3d', 'dropout2d','dropout3d']
@@ -84,6 +82,21 @@ astpath_rules:
     - msg: "WT402 Use focal loss instead of cross entropy loss. See: https://arxiv.org/abs/1708.02002"
       patterns: [".//Name[@id='{}' and ancestor::Call]", ".//Attribute[@attr='{}' and ancestor::Call]"]
       template: ['CrossEntropyLoss','BinaryCrossEntropy', 'CategoricalCrossEntropy', 'binary_cross_entropy', 'BCELoss', 'categorical_crossentropy']
+
+
+    - msg: "WT302: astype() always makes a copy!!! use explicit .astype(..., copy=True/False)"
+      patterns: [".//Call[func/Attribute[@attr='astype'] and not(keywords/keyword[@arg='copy'])]"]
+
+    - msg: 'WT303 : astype({}) is not precise enough, use bit-precision ("int32"/"float32")'
+      patterns: [".//Call[func/Attribute[@attr='astype'] and args/Name[@id='{}']]",
+                 ".//Call[func/Attribute[@attr='astype'] and keywords/keyword[@arg='dtype']/value/Name[@id='{}']]",
+                ]
+      template: ["int", "float"]
+
+    - msg: 'WT304 : astype("{}") is not precise enough, use bit-precision ("int32"/"float32")'
+      patterns: [ ".//Call[func/Attribute[@attr='astype'] and args/Constant[@type='str' and @value='{}']]",
+                  ".//Call[func/Attribute[@attr='astype'] and keywords/keyword[@arg='dtype']/value/Constant[@type='str' and @value='{}']]"]
+      template: ["int", "float"]
 
 """
 
