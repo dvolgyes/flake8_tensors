@@ -1,5 +1,4 @@
-flake8_tensors
-==============
+# flake8_tensors
 
 [![pyversion](https://img.shields.io/pypi/pyversions/flake8_tensors.svg)](https://pypi.org/project/flake8_tensors/)
 [![PyPI - License](https://img.shields.io/pypi/l/flake8_tensors.svg)](https://github.com/dvolgyes/flake8_tensors/raw/master/LICENSE.txt)
@@ -8,14 +7,29 @@ flake8 plugin which recommends some tricks for machine learning codes.
 
 ## Installation
 
-The plugin requires python3.8+.
+The plugin requires python3.10+.
 
-Install the stable version:
-`pip install flake8_tensors --upgrade`
+### Using UV (recommended)
 
-Or with pipx:
-`pipx install flake8`
-`pipx inject flake8 flake8_tensors`
+Run flake8 with the plugin without installation:
+
+```bash
+uvx --with flake8-tensors flake8 .
+```
+
+Or install as a UV tool:
+
+```bash
+uv tool install flake8 --with flake8-tensors
+```
+
+### Using pip
+
+Alternatively, install with pip:
+
+```bash
+pip install flake8_tensors --upgrade
+```
 
 ## Usage
 
