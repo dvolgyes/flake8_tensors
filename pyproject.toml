@@ -1,28 +1,31 @@
-[tool.poetry]
+[project]
 name = "flake8-tensors"
-version = "1.2.0"
+version = "1.3.0"
 description = "flake8_tensors - flake8 plugin for deep learning codes"
-authors = ["David Völgyes <david.volgyes@ieee.org>"]
+authors = [
+    {name = "David Völgyes", email = "david.volgyes@ieee.org"}
+]
 readme = "README.md"
-packages = [{include = "flake8_tensors"}]
-repository = 'https://github.com/dvolgyes/flake8_tensors'
-license = 'MIT'
+requires-python = ">=3.10,<3.14"
+license = {text = "MIT"}
 keywords = ["flake8", "deep learning", "pytorch", "numpy"]
+dependencies = [
+    "flake8>=7.0,<8.0",
+    "ruamel.yaml~=0.17.21",
+    "astpath~=0.9.1",
+    "lxml~=6.0",
+]
 
-include = ["test.py"]
+[project.urls]
+Repository = "https://github.com/dvolgyes/flake8_tensors"
 
-
-[tool.poetry.plugins."flake8.extension"]
-WT = 'flake8_tensors:Flake8TensorsPlugin'
-
-[tool.poetry.dependencies]
-python = "^3.8.1"
-flake8 = ">=6.0, <8.0"
-"ruamel.yaml" = "^0.17.21"
-astpath = "^0.9.0"
-lxml = "^4.9.2"
-setuptools = "^67.1.0"
+[project.entry-points."flake8.extension"]
+WT = "flake8_tensors:Flake8TensorsPlugin"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "flake8_tensors"
+module-root = ""
