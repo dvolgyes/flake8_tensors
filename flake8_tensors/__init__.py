@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-import pkg_resources
-__version__ = pkg_resources.require('flake8_tensors')[0].version
+from importlib.metadata import version
+
+__version__ = version('flake8_tensors')
 __title__ = 'flake8_tensors'
 __summary__ = 'flake8_tensors - flake8 plugin for deep learning codes'
 __license__ = 'MIT'
